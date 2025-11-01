@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+build/
+dist/
+coverage/
+.vscode/
+# Ignore diretórios de banco de dados
+mysql/
+*.ibd
+*.frm
+*.ibdata
+*.log
+*.err
+*.pid
