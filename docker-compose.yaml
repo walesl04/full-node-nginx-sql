@@ -10,7 +10,8 @@ services:
     networks:
       - node-network
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   nginx:
     build:
@@ -36,6 +37,11 @@ services:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
     command: --innodb-use-native-aio=0
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
     networks:
       - node-network
 
